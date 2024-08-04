@@ -1,18 +1,21 @@
 import hitbox
 import pygame
+import blocks
+import copy
 pygame.init()
 
 class Player():
     def __init__(self, world):
         self.world = world
         self.pos = [0, 0]
-        self.speed = 20
+        self.speed = 5
         self.display_pos = [
             int(self.world.W / 2) - 15,
             int(self.world.H / 2) - 25
             ]
         self.hitbox = hitbox.Hitbox(self.world, self, (30, 50))
         self.mousedown = False
+        self.selected_block = {"Type" : "stone", "Tags" : {}}
 
     def update(self, events):
         #перемещение
@@ -45,7 +48,10 @@ class Player():
             elif event.type == pygame.MOUSEBUTTONUP:
                 self.mousedown = False
         if self.mousedown:
-            self.world.set_and_remove_blocks()
+            self.world.set_and_remove_blocks(self.selected_block)
+            new_block = self.world.select_block()
+            if new_block != "air" and new_block != self.selected_block["Type"] and new_block != None:
+                self.selected_block["Type"] = new_block
 
     def draw(self, screen):
         pass

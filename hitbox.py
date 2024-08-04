@@ -18,7 +18,7 @@ class Hitbox(pygame.sprite.Sprite):
     def collide(self):
         return(False)
         ch_pos = [
-            -int_or_round((self.world.scroll[0] + int(self.world.W / 2) - self.object.display_pos[0]) / 320),
+            -int_or_round((self.world.scroll[0] + int(self.world.W / 2) - self.object.display_pos[0] - 320) / 320),
             -int_or_round((self.world.scroll[1] + int(self.world.H / 2) - self.object.display_pos[1]) / 320)
             ]
         pos = [

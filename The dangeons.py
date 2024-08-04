@@ -76,7 +76,7 @@ while keep_going:#основной цикл
     elif menu == "game":#игра
         game_world.update(screen, events)
     pygame_widgets.update(events)
-    string = str(int(timer.get_fps()))
+    string = "fps: " + str(int(timer.get_fps()))
     screen.blit(font2.render(string, True, (255, 0, 0)), (0, 0))
     pygame.display.update()
     timer.tick(60)
